@@ -13,16 +13,16 @@ if (!$conn) {
 echo 'Successful database connection!'.PHP_EOL;
 
 echo "Data from mysql";
-echo "\n";
+echo "<br>";
 echo "-----------------------------------";
-echo "\n";
+echo "<br>";
 $sql = 'SELECT * FROM site';
          $result = mysqli_query($conn, $sql);
 
          if (mysqli_num_rows($result)) {
             while($row = mysqli_fetch_assoc($result)) {
                
-               echo "Site Name: " . $row["site_name"]. "\n";
+               echo "Site Name: " . $row["site_name"]. "<br>";
             }
          } else {
             echo "0 results";
