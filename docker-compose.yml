@@ -1,0 +1,34 @@
+version: "3.2"
+services:
+  backend1:
+    build: ./nginx
+    tty: true
+    links:
+      - mysql_db
+
+  backend2:
+    build: ./nginx
+    tty: true
+    links:
+      - mysql_db
+
+  loadbalancer:
+    build: ./load-balancer
+    tty: true
+    links:
+      - backend1
+      - backend2
+    ports:
+      - "80:80"
+
+  mysql_db:
+    build: ./mysql
+    tty: true
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: RootPas
+
+      MYSQL_DATABASE: site
+      MYSQL_USER: Site_user
+      MYSQL_PASSWORD: site_user_pass
